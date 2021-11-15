@@ -1,0 +1,21 @@
+<h1>Welcome to COUNTEDONNE</h1>
+
+<p>This is un jeu où je te donne une suite de lettres, and you have to guess the best word possible, en utilisant autant de lettres que possible. Capisce ?</p>
+
+<div>
+  <ul>
+    <% @letters.each do |letter| %>
+    <li><%= letter.capitalize %></li>
+    <% end %>
+  </ul>
+</div>
+
+<div>
+  <form action="/result" method="post">
+    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+    <input type="text" name="answer" placeholder="use only letters provided above">
+    <input type="hidden" name="grid" value='<%= @letters.join %>'>
+    <input type="hidden" name="start" value='<%= Time.now %>'>
+    <input type="submit" value="Send ! 🥰">
+  </form>
+</div>
